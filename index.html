@@ -2,67 +2,256 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>CARVA NA LADEIRA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARVA NA LADEIRA - Meta de Vendas</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f9f9f9;
-            text-align: center;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
         .container {
-            background: #fff;
-            max-width: 400px;
-            margin: 60px auto;
-            border-radius: 16px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.09);
-            padding: 36px;
+            max-width: 900px;
+            width: 100%;
         }
-        h1 {
-            color: #243772;
-            margin-bottom: 24px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
         }
-        .big-number {
+        
+        .header h1 {
             font-size: 48px;
-            font-weight: 700;
-            color: #ff4a42;
-            margin: 16px 0 8px 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        .desc {
-            font-size: 18px;
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
             margin-bottom: 30px;
-            color: #353535;
         }
-        .divider {
-            margin: 32px 0 24px 0;
-            border-top: 2px solid #eee;
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid;
         }
-        .meta {
-            font-size: 20px;
-            color: #7883b2;
-            margin-top: 24px;
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        
+        .card-falta {
+            border-top-color: #ff6b6b;
+        }
+        
+        .card-faturado {
+            border-top-color: #51cf66;
+        }
+        
+        .card-meta {
+            border-top-color: #4dabf7;
+        }
+        
+        .card-title {
+            font-size: 16px;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        
+        .card-value {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-falta .card-value {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-faturado .card-value {
+            background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-subtitle {
+            font-size: 14px;
+            color: #999;
+            font-weight: 500;
+        }
+        
+        .progress-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        .progress-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .progress-bar-container {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 30px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: #333;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .card-value {
+                font-size: 36px;
+            }
+            
+            .progress-stats {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>CARVA NA LADEIRA</h1>
+        <div class="header">
+            <h1>🎩 CARVA NA LADEIRA</h1>
+        </div>
         
-        <div class="desc">FALTAM</div>
-        <div class="big-number">692</div>
-        <div class="desc">INGRESSOS</div>
+        <div class="cards-grid">
+            <div class="card card-falta">
+                <div class="card-title">Faltam</div>
+                <div class="card-value">692</div>
+                <div class="card-subtitle">INGRESSOS</div>
+            </div>
+            
+            <div class="card card-faturado">
+                <div class="card-title">Faturado</div>
+                <div class="card-value">8.713</div>
+                <div class="card-subtitle">JÁ VENDIDOS</div>
+            </div>
+            
+            <div class="card card-meta">
+                <div class="card-title">Meta</div>
+                <div class="card-value">1.144.000</div>
+                <div class="card-subtitle">EM REAIS</div>
+            </div>
+        </div>
         
-        <div class="divider"></div>
+        <div class="progress-section">
+            <div class="progress-title">Progresso da Meta</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 0.76%">0.76%</div>
+            </div>
+            
+            <div class="progress-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Progresso</div>
+                    <div class="stat-value">0.76%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Restante</div>
+                    <div class="stat-value">99.24%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Ingressos Restantes</div>
+                    <div class="stat-value">692</div>
+                </div>
+            </div>
+        </div>
         
-        <div class="desc">FATURADO ATÉ O MOMENTO</div>
-        <div class="big-number">8.713</div>
-        
-        <div class="divider"></div>
-        
-        <div class="meta">META: <strong>1.144.000</strong></div>
+        <div class="footer">
+            <p>🚀 Vamos vencer essa meta! Próximo passo: 1.136.287 em vendas</p>
+        </div>
     </div>
 </body>
 </html>
